@@ -1,0 +1,19 @@
+The issue can be solved by ensuring the `.container` element has a defined `position` property, usually `relative`, creating a new stacking context, and allowing the absolutely positioned pseudo-element to properly layer on top.  Here's the corrected CSS:
+
+```css
+.container {
+  position: relative; /* This is the key change */
+  background-color: lightblue;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: lightcoral; 
+}
+```
+By adding `position: relative;` to `.container`, the `::before` pseudo-element is correctly layered, and the `background-color: lightcoral` is displayed as expected.
